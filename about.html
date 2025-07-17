@@ -1,0 +1,150 @@
+<!Doctype html>
+<html lang="en">
+    <head>
+        <!--page title-->
+        <meta charset="UTF-8">
+        <title>
+            Yanhua's Site
+        </title>
+        <link rel="icon" href="head_icon.png" type="image/png">
+        <style>
+            my-intro{
+                display:block;
+                border:1px dashed #e1989855;
+                padding:10px;
+                margin:10px 0;
+            }
+        </style>        
+    </head>
+
+    <body>
+        <!--heading content-->
+        <header>
+            <a href="/" class="logo">
+                <img src="Yas033.png" alt="Yanhua's logo">
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About me</a>
+                <a href="project.html">Projects</a>
+                <a href="resume.html">Resume</a>
+                <a href="contact.html">Contact</a>
+                <form action="/search" method="get">
+                    <label for="site-search">Search:</label>
+                    <input type="search" id="site-search" name="q" placeholder="..." >
+                    <button type="submit">Go</button>
+                </form>
+                <select>
+                    <option value="/en">English</option>
+                    <option value="/zh">中文</option>
+                </select>
+            </nav>
+            <br />
+        </header>
+
+        <main>
+            <hgroup>
+                <h1>About Me</h1>
+                <p>Personal Background & Story</p>
+            </hgroup>
+                
+            <figure>
+                <picture>
+                    <!--source srcset="Reach.webp" type="image/webp"-->
+                    <source srcset="Reach.png" type="image/png">
+                    <img src="Reach.png" alt="Yanhua's Photo">
+                </picture> 
+                
+                <figcaption>"This photo was taken when I went snowboarding at Mammoth Mountain last year. It was my first time reaching 11,060 feet."</figcaption>
+            </figure>
+                
+
+            <article>
+                <h2>Introduction</h2>
+                <p>Hi! I'm Yanhua Shi
+                <abbr title="HyperText Markup Language">HTML</abbr> is what I am learning now!
+                </p>
+                
+                <blockquote>
+                    "Just break it down."
+                    <cite>——Yanhua Shi</cite>
+                </blockquote>
+
+                <h3>Interests</h3>
+                <ul>
+                    <li>...</li>
+                    <li>...</li>
+                    <li>...</li>
+                </ul>
+
+                <h3>Value & Visions</h3>
+                <ol>
+                    <li>...</li>
+                    <li>...</li>
+                    <li>...</li>
+                </ol>
+            </article>
+
+            <details>
+                <summary><strong>Fun fact about me</strong></summary>
+                <p>Which one of below is true?</p>
+                    <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                <details><summary><i>Answer</i></summary><p><b>3 is true</b></p></details>
+            </details>
+                    
+            <!--"Labs" or "Experiments" section-->
+            <h2>Custom Elements Experiments</h2>
+
+            <my-intro>
+                <h3>Test Custom Intro</h3>
+                <p>demo of my-intro</p>
+            </my-intro>
+
+            <script>
+                class HelloWorld extends HTMLElement{
+                    constructor(){
+                        super();
+                        console.log("Hello world!");
+                    }
+                }   
+                customElements.define('hello-world',HelloWorld);
+            </script>
+
+            <hello-world></hello-world>
+
+        </main>
+
+        <footer>
+            <hr>
+                <p>
+                    <em>
+                        <b>Welcome</b>
+                    </em>        
+                </p>
+            <section class="copyrights">
+                <h2>Copyright</h2>
+                <p>
+                    <span style="color:blue">
+                        2025 Yanhua Shi. All rights reserved. | Connect with me:
+                    <a href="designed404page.html">
+                        GitHub
+                    </a>&nbsp;&nbsp;
+                    <a href="designed404page.html">
+                        LinkedIn
+                    </a>&nbsp;&nbsp;
+                    <a href="designed404page.html">
+                        Instagram
+                    </a>&nbsp;&nbsp;
+                    <a href="designed404page.html">
+                        Facebook
+                    </a>&nbsp;&nbsp;<br />
+                    </span>
+                </p>
+            </section>
+        </footer>
+    </body>
+</html>
