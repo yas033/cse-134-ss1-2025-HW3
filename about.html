@@ -8,12 +8,47 @@
         </title>
         <link rel="icon" href="head_icon.png" type="image/png">
         <style>
-            my-intro{
+            nav{  
+                background-color: antiquewhite;
                 display:block;
-                border:1px dashed #e1989855;
+                border:20px solid #ed8d8d55;
                 padding:10px;
                 margin:10px 0;
             }
+
+            h1,h2,h3 {
+                font-family: Arial, sans-serif;
+                color:rgb(188, 86, 103)
+            }
+
+            /*You may use images of any form (GIF, JPEG, WebP, SVG, etc.),
+            but make sure that the types are appropriate for the content served (5 pts)*/
+            /*this package include different forms of the images */
+            .photo_package {
+            position: relative; 
+            display: inline-block;
+            }
+
+            .photo_package img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            }
+
+            /* svg file shows overlay on the img */
+            .overlay {
+            position: absolute;
+            bottom: 20px;
+            right: 10px;
+            top:auto;
+            left:auto;
+            width: 100px;
+            height: auto;
+            pointer-events: none;
+            opacity: 0.7;
+            }
+
+
         </style>        
     </head>
 
@@ -49,11 +84,20 @@
             </hgroup>
                 
             <figure>
-                <picture>
-                    <!--source srcset="Reach.webp" type="image/webp"-->
-                    <source srcset="Reach.png" type="image/png">
-                    <img src="Reach.png" alt="Yanhua's Photo">
-                </picture> 
+                <div class="photo_package">
+                    <!--*Your images should be optimized for delivery (5 pts)*-->
+                    <picture>
+                    <source srcset="Reach.webp" type="image/webp">
+                    
+                    <!--Accessibility issues with your images such as alternative text, proper use of 
+                    contrast and proper use of foreground or background should be accounted for -->
+
+                    <!--To adjust pictures with their frames make sure 
+                    to use object-position and object-fit attributes.-->
+                    <img src="Reach.png" alt="Yanhua's Photo" style="object-fit: cover; object-position: center;">
+                    </picture>
+                    <img src="overlay.svg" class="overlay" alt="" aria-hidden="true">
+                </div> 
                 
                 <figcaption>"This photo was taken when I went snowboarding at Mammoth Mountain last year. It was my first time reaching 11,060 feet."</figcaption>
             </figure>
