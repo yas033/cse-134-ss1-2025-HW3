@@ -21,8 +21,13 @@
                 --main-font:Arial, Helvetica, sans-serif;
                 color:#749ba3;
                 background-color: #c4dfe7;
-                transition: background-color 0.3s, color 0.3s;
-                
+                transition: background-color 0.3s, color 0.3s;    
+            }
+
+            body{
+                background-color:var(--background-color);
+                color:#749ba3;
+                transition:background-color 0.3s, color 0.3s;
             }
 
             nav {
@@ -88,6 +93,10 @@
 
             @keyframes fade-In{
                 from{opacity:0} to{opacity:1}
+            }
+
+            #menu-toggle:checked ~ .main-nav {
+                    display: flex;
             }
 
             /*Media Queries (See Part 3 - Responsive Web Design) (1 pt)*/
@@ -161,6 +170,7 @@
                 .menu-icon{
                     display: block;
                     margin: 10px;
+                    cursor: pointer;
                 }
 
                 .main-nav{
@@ -205,25 +215,32 @@
                 }
             }
         
-            /*-----------------------------DARK MODE-----------------------------*/    
-            body.Dark-Mode {
+            /*-----------------------------DARK MODE-----------------------------*/   
+            body:has(#reading-toggle:checked) {
                 background-color: #2C2C2C;
                 color: #CCCCCC;
-            }   
+            }
 
-            body.Dark-Mode nav {
+            body:has(#reading-toggle:checked) nav {
                 background-color: #000000;
                 color: #CCCCCC;
             }
 
-            body.Dark-Mode nav a {
+            body:has(#reading-toggle:checked) nav a {
                 color: #c6dbf2;
             }
 
-            .main-nav {
-                display: none;
-                flex-direction: column; /* stack items */
-                gap: 1rem;
+            .dark-mode-button {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background-color: #eee;
+                color: #333;
+                padding: 5px 10px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 0.9rem;
+                z-index: 1000;
             }
 
             /*New selectors like has() (2 pts)*/
@@ -232,9 +249,7 @@
             nav:has(.active-button) {
                 /*then add a 10 px solid rgb line*/
                 border-bottom: 10px solid rgb(238, 255, 0);
-            }
-
-            
+            } 
         </style>
     </head>
 
@@ -243,16 +258,17 @@
         <!--header: ReadingMode + LOGO + Nav(quick☰ nav Menu/Search） -->
         <header>
             <!--reading Mode------------------------------------------------------------------------>
+            <label for="reading-toggle" class="dark-mode-button">Reading Mode</label>
             <input type="checkbox" id="reading-toggle" hidden>
-            <button class="dark-mode-button" onclick="toggleDarkMode()">Reading Mode</button>
-            
             <!--LOGO-------------------------------------------------------------------------------->
             <a href="/" class="logo">
                 <img src="Yas033.png" alt="Yanhua's logo">
             </a>
 
-            <!--☰ for quick nav-------------------------------------------------------------------->
-            <button class="menu-icon" onclick="toggleMenu()">☰</button>
+            <!--☰ for quick nav-------------------------------------------------------------------->            
+            <input type="checkbox" id="menu-toggle" hidden>
+            <label for="menu-toggle" class="menu-icon">☰</label>
+
             <nav class="main-nav">
                 <!--nav links-->
                 <a href="index.html">Home</a>
@@ -260,12 +276,13 @@
                 <a href="project.html">Projects</a>
                 <a href="resume.html">Resume</a>
                 <a href="contact.html">Contact</a>
+
                 <form action="designed404page.html" method="get">
                     <label for="site-search">Search:</label>
                     <input type="search" id="site-search" name="q" placeholder="..." >
                     <button type="submit" class="active-button">Go</button>
-
                 </form>
+
                 <select>
                     <option value="/en">English</option>
                     <option value="/zh">中文</option>
@@ -325,20 +342,5 @@
                 </p>
             </section>
         </footer>
-
-        <!--onclick to active the button-->
-        <button onclick="toggleDarkMode()">Reading Mode</button>
-        
-        <script>
-            function toggleDarkMode() {
-            document.body.classList.toggle("Dark-Mode");
-            }
-
-            function toggleMenu(){
-                /*select the main-nav*/
-                const nav = document.querySelector(".main-nav");
-                nav.classList.toggle("show");
-            }
-        </script>
     </body>
 </html>
