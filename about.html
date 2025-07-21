@@ -1,32 +1,214 @@
 <!Doctype html>
 <html lang="en">
+<!--HEAD-->
     <head>
         <!--page title-->
         <meta charset="UTF-8">
+        <!--tell browser that this site will auto fit ths screen size -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--page title and icon-->
         <title>
             Yanhua's Site
         </title>
         <link rel="icon" href="head_icon.png" type="image/png">
+
+        <!--Style Sheet-->
         <style>
-            nav{  
-                background-color: antiquewhite;
-                display:block;
-                border:20px solid #ed8d8d55;
-                padding:10px;
-                margin:10px 0;
+            body {
+                background-color: #c4dfe7;
+                color:#749ba3;
+                transition: background-color 0.3s, color 0.3s;
             }
+
+            nav{   
+                font-size:1rem;
+                background-color: #bbe3f5;
+                display: block;
+                color:#2c4f4f;
+
+                border: 5px solid #61C0BF;
+                padding: 5px;
+                margin: 5px 0;
+
+                max-width: 90vw;
+                box-sizing: border-box;
+                border-radius: 16px;            
+            }
+
+            a {
+                color: #2c4f4f;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
 
             h1,h2,h3 {
                 font-family: Arial, sans-serif;
-                color:rgb(188, 86, 103)
+                color:#61C0BF;
+            }
+            
+            .logo img{
+                max-width:10%;
+                height: auto;
+            }
+            
+            .menu-icon{
+                display: none;
+            }
+            
+            .main-nav {
+                display: none;
+                flex-direction: column; /* stack items */
+                gap: 1rem;
             }
 
+
+            /*Very small screen (phone)*/
+            @media screen and (max-width: 600px) {
+                nav{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                    font-size: 1rem;
+                    align-items: flex-start;
+                }
+                
+                img{
+                    width: 100%;
+                    height: auto;
+                    max-width: 100%;
+                }
+
+                .photo_package{
+                    max-width: 100%
+                }
+
+                body{
+                    padding: 10px;
+                }
+
+                main, article, nav {
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+
+                .menu-icon{
+                    display: block;
+                    margin: 10px;
+                }
+
+                .main-nav{
+                    display: none;
+                    flex-direction: column;
+                    gap: 1.5rem;
+                }
+
+                #menu-toggle:checked + .menu-icon + .main-nav {
+                    display: flex;
+                }
+
+                .main-nav.show{
+                    display: flex;
+                }
+            }
+
+            /*tablet or restrictive laptop*/
+            @media screen and (min-width:601px) and (max-width:1024px){
+                nav{
+                    font-size:1.2rem;
+                    gap:1rem;
+                }
+
+                img{
+                    width:80%;
+                    max-width:100%;
+                }
+
+                .photo_package{
+                    max-width:80%;
+                }
+
+                .menu-icon{
+                    display: block;
+                    margin: 10px;
+                }
+
+                .main-nav{
+                    display: none;
+                    flex-direction: column;
+                    gap: 1.5rem;
+                }
+
+                .main-nav.show{
+                    display: flex;
+                }
+            }
+
+            /*desktop*/
+            @media screen and (min-width:1025px){
+                nav{
+                    font: size 1.4rem;
+                    gap:1.5rem;
+                }
+
+                img{
+                    width:70%
+                }
+
+                .photo_package{
+                    max-width:60%;
+                }
+
+                .menu-icon{
+                    display: block;
+                    margin: 10px;
+                }
+
+                .main-nav{
+                    display: none;
+                    flex-direction: column;
+                    gap: 1.5rem;
+                }
+                
+                .main-nav.show{
+                    display: flex;
+                }
+            }
+
+        /*-----------------------------DARK MODE-----------------------------*/    
+        body.Dark-Mode {
+            background-color: #2C2C2C;
+            color: #CCCCCC;
+        }   
+
+        body.Dark-Mode nav {
+            background-color: #000000;
+            color: #CCCCCC;
+        }
+
+        body.Dark-Mode nav a {
+            color: #c6dbf2;
+        }
+
+        body.Dark-Mode a {
+            color:#bbe3f5
+        }
+
+
+            
             /*You may use images of any form (GIF, JPEG, WebP, SVG, etc.),
             but make sure that the types are appropriate for the content served (5 pts)*/
             /*this package include different forms of the images */
+            /*Image Resizing （5pts)*/
             .photo_package {
             position: relative; 
-            display: inline-block;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 100%;
             }
 
             .photo_package img {
@@ -40,31 +222,41 @@
             position: absolute;
             bottom: 20px;
             right: 10px;
-            top:auto;
-            left:auto;
+            top: auto;
+            left: auto;
+            max-width:100%;
             width: 100px;
             height: auto;
             pointer-events: none;
             opacity: 0.7;
             }
-
-
+        
         </style>        
     </head>
 
+<!--BODY-->
     <body>
-        <!--heading content-->
+        <!--header: ReadingMode + LOGO + Nav(quick☰ nav Menu/Search） -->
         <header>
+            <!--reading Mode------------------------------------------------------------------------>
+            <input type="checkbox" id="reading-toggle" hidden>
+            <button class="dark-mode-button" onclick="toggleDarkMode()">Reading Mode</button>
+            
+            <!--LOGO-------------------------------------------------------------------------------->
             <a href="/" class="logo">
                 <img src="Yas033.png" alt="Yanhua's logo">
             </a>
-            <nav>
+
+            <!--☰ for quick nav-------------------------------------------------------------------->
+            <button class="menu-icon" onclick="toggleMenu()">☰</button>
+            <nav class="main-nav">
+                <!--nav links-->
                 <a href="index.html">Home</a>
                 <a href="about.html">About me</a>
                 <a href="project.html">Projects</a>
                 <a href="resume.html">Resume</a>
                 <a href="contact.html">Contact</a>
-                <form action="/search" method="get">
+                <form action="designed404page.html" method="get">
                     <label for="site-search">Search:</label>
                     <input type="search" id="site-search" name="q" placeholder="..." >
                     <button type="submit">Go</button>
@@ -74,9 +266,9 @@
                     <option value="/zh">中文</option>
                 </select>
             </nav>
-            <br />
         </header>
 
+        <!--MAIN AREA------TEXT/IMG/CONTENTS-------------------------------------------------------->
         <main>
             <hgroup>
                 <h1>About Me</h1>
@@ -88,7 +280,7 @@
                     <!--*Your images should be optimized for delivery (5 pts)*-->
                     <picture>
                     <source srcset="Reach.webp" type="image/webp">
-                    
+
                     <!--Accessibility issues with your images such as alternative text, proper use of 
                     contrast and proper use of foreground or background should be accounted for -->
 
@@ -162,6 +354,7 @@
 
         </main>
 
+        <!--FOOTER---------------------------------------------------------------------------------->
         <footer>
             <hr>
                 <p>
@@ -172,7 +365,7 @@
             <section class="copyrights">
                 <h2>Copyright</h2>
                 <p>
-                    <span style="color:blue">
+                    <span style="color:rgb(0, 0, 0)">
                         2025 Yanhua Shi. All rights reserved. | Connect with me:
                     <a href="designed404page.html">
                         GitHub
@@ -190,5 +383,20 @@
                 </p>
             </section>
         </footer>
+
+        <!--onclick to active the button-->
+        <button onclick="toggleDarkMode()">Reading Mode</button>
+        
+        <script>
+            function toggleDarkMode() {
+            document.body.classList.toggle("Dark-Mode");
+            }
+
+            function toggleMenu(){
+                /*select the main-nav*/
+                const nav = document.querySelector(".main-nav");
+                nav.classList.toggle("show");
+            }
+        </script>
     </body>
 </html>
